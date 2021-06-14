@@ -5,9 +5,10 @@
         </template>
         <div class="py-3" v-for="course in this.courseList" v-bind:key="course.id">
             <div class="mx-8 bg-white rounded shadow p-4">
+                <div class="text-sm text-gray-500">Mis en ligne par {{ course.user.name }}</div>
                 <div class="flex  justify-between items-center">
                     <div class="text-4xl">{{course.title}}</div> 
-                    <div>25 episode</div>
+                    <div>{{course.episodes_count}} episode</div>
                 </div>
                 <div class="text-sm text-gray-500 mt-3">{{course.description}}</div>
                 <a href="#" class="bg-indigo-500 text-white px-2 py-1 text-sm mt-3 rounded hover:bg-indigo-700">voir la formation</a>

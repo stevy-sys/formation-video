@@ -21,7 +21,17 @@ class CourseController extends Controller
     {
         $course = Course::where("id",$id)->with("episodes")->first();
 
-        //dd($course);
-        return Inertia::render('Courses/Show',compact('course'));
+        $watched = auth()->user()->episodes ;
+        return Inertia::render('Courses/Show',compact('course','watched'));
+    }
+
+    public function toggleProgess(Request $request)
+    {
+        $id =$request->episodeId;
+        $user = auth()->user();
+
+        $user->episodes()->toggle($id);
+
+        return $user->episodes;
     }
 }

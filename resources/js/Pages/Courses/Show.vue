@@ -1,20 +1,23 @@
 <script>
 import AppLayout from "../../Layouts/AppLayout";
+import ProgressButton from './ProgressButton';
 
 export default{
 
     //composant utiliser
     components:{
-        AppLayout
+        AppLayout,
+        ProgressButton
     },
 
     //recuperation des donnees venant de variable tableau de PHP
-    props:['course'],
+    props:['course','watched'],
 
     //insertion des donnee dans le state du composant
     data(){
         return{
             courseShow:this.course,
+            watched:this.watched,
             currentKey:0
         }
     },
@@ -54,11 +57,21 @@ export default{
 
             <div class="mt-6">
                 <ul v-for="(episode,index) in courseShow.episodes" v-bind:key="episode.id">
-                    <li class="mt-3">
-                        Episode n` {{index + 1}} - {{episode.title}}
-                        <button class="text-gray-500 focus:text-indigo-500 focus:outline-none" @click="switchEpisode(index)">
-                            voir l'épisode
-                        </button>
+                    <li class="mt-5 container">
+                        <div class="flex justify-between">
+                            <div class="ml-5">
+                                Episode n` {{index + 1}} - {{episode.title}}
+                                <button class="text-gray-500 focus:text-indigo-500 focus:outline-none" @click="switchEpisode(index)">
+                                    voir l'épisode
+                                </button>
+                            </div>
+                            <div class="mr-40 mb-5">
+                                <progress-button :episode-id="episode.id" :watched-episodes="watched"/>
+                            </div>
+                        </div>
+                        <div class="flex content-center justify-center">
+                            <hr class="w-1/2"/>
+                        </div>
                     </li>
                 </ul>
             </div>

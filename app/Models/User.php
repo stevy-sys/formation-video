@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Course;
+use App\Models\Episode;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -63,5 +64,11 @@ class User extends Authenticatable
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function episodes()
+    {
+        //relation avec Episode many to many table completions et les 2 cles
+        return $this->belongsToMany(Episode::class,'completions',"user_id","episode_id");
     }
 }

@@ -11,7 +11,9 @@
                     <div>{{course.episodes_count}} episode</div>
                 </div>
                 <div class="text-sm text-gray-500 mt-3">{{course.description}}</div>
-                <a href="#" class="bg-indigo-500 text-white px-2 py-1 text-sm mt-3 rounded hover:bg-indigo-700">voir la formation</a>
+                <jet-nav-link  :href="route('courses.show', course.id)" > 
+                    <div class="bg-indigo-500 text-white px-2 py-1 text-sm mt-3 rounded hover:bg-indigo-700">voir la formation</div> 
+                </jet-nav-link>
             </div>
         </div> 
     </app-layout>
@@ -19,10 +21,13 @@
 
 <script>
 import AppLayout from "../../Layouts/AppLayout";
+import JetNavLink from "@/Jetstream/NavLink";
+
 export default{
 
     //composant utiliser
     components:{
+        JetNavLink,
         AppLayout
     },
 

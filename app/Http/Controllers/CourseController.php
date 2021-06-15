@@ -16,4 +16,12 @@ class CourseController extends Controller
         //dd($courses);
         return Inertia::render('Courses/Index',compact('courses')); //directement dans Pages
     }
+
+    public function show($id)
+    {
+        $course = Course::where("id",$id)->with("episodes")->first();
+
+        //dd($course);
+        return Inertia::render('Courses/Show',compact('course'));
+    }
 }
